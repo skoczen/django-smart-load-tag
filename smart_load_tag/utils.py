@@ -22,7 +22,10 @@ def load(parser, lib, tag='*', name=None, namespace=None, app=None):
     try:
         lib_name = lib
         lib = Library()
-        module_lib = get_library(lib_name, app)
+        if app:
+            module_lib = get_library(app)
+        else:
+            module_lib = get_library(lib_name)
         lib.tags.update(module_lib.tags)
         lib.filters.update(module_lib.filters)
         if tag != '*':
